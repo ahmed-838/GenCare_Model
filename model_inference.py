@@ -46,16 +46,16 @@ def get_prediction(image_path):
         
         # Check if "normal" is the predicted class
         if "normal" in predicted_classes:
-            result["diagnosis_message"] = "لم يتم اكتشاف أي من الأمراض"
+            result["diagnosis_message"] = "no abnormalities detected"
         else:
             # Filter predicted_classes to only include our target conditions
             filtered_classes = [cls for cls in predicted_classes if cls in TARGET_CONDITIONS]
             result["predicted_classes"] = filtered_classes
             
             if filtered_classes:
-                result["diagnosis_message"] = f"تم اكتشاف: {', '.join(filtered_classes)}"
+                result["diagnosis_message"] = f"detected: {', '.join(filtered_classes)}"
             else:
-                result["diagnosis_message"] = "لم يتم اكتشاف أي من الأمراض المستهدفة"
+                result["diagnosis_message"] = "no abnormalities detected"
                 
         return result
     except Exception as e:
